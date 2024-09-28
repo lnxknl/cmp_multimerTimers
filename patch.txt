@@ -1,0 +1,30 @@
+diff --git a/MultiTimer.c b/MultiTimer.c
+index 46bf7a2..316ce2d 100644
+--- a/MultiTimer.c
++++ b/MultiTimer.c
+@@ -35,7 +35,7 @@ int multiTimerStart(MultiTimer* timer, uint64_t timing, MultiTimerCallback_t cal
+     timer->userData = userData;
+ 
+     MultiTimer** current = &timerList;
+-    while (*current && ((*current)->deadline < timer->deadline)) {
++    while (*current && ((*current)->deadline < timer->deadline)) {// @NOTE , add the larger timer to backend
+         current = &(*current)->next;
+     }
+     timer->next = *current;
+diff --git a/examples/test_linux.c b/examples/test_linux.c
+index 86e0531..f71f3da 100644
+--- a/examples/test_linux.c
++++ b/examples/test_linux.c
+@@ -42,9 +42,9 @@ int main() {
+ 
+     // Main loop to simulate time passage and process timers
+     while (1) {
+-        multiTimerYield();
++        multiTimerYield(); // check time to trigger callback
+         usleep(1000); // Sleep for 1 ms
+     }
+ 
+     return 0;
+-}
+\ No newline at end of file
++}
