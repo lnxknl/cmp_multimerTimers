@@ -35,7 +35,7 @@ int multiTimerStart(MultiTimer* timer, uint64_t timing, MultiTimerCallback_t cal
     timer->userData = userData;
 
     MultiTimer** current = &timerList;
-    while (*current && ((*current)->deadline < timer->deadline)) {// @NOTE , add the larger timer to backend
+    while (*current && ((*current)->deadline < timer->deadline)) {
         current = &(*current)->next;
     }
     timer->next = *current;

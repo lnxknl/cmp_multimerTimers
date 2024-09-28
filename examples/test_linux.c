@@ -42,7 +42,7 @@ int main() {
 
     // Main loop to simulate time passage and process timers
     while (1) {
-        multiTimerYield(); // check time to trigger callback
+        multiTimerYield();
         usleep(1000); // Sleep for 1 ms
     }
 
